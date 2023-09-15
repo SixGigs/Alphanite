@@ -9,7 +9,7 @@ function Player:init(x, y)
 	Player.super.init(self, playerImageTable)
 
 	self:addState("idle", 1, 1)
-	self:addState("walk", 1, 4, {tickStep = 6})
+	self:addState("walk", 2, 3, {tickStep = 6})
 	self:addState("jump", 5, 5)
 	self:playAnimation()
 
@@ -23,7 +23,7 @@ function Player:init(x, y)
 	self.xVelocity = 0
 	self.yVelocity = 0
 	self.gravity = 1.0
-	self.maxSpeed = 2.0
+	self.maxSpeed = 2
 
 	-- Player state
 	self.touchingGround = false
@@ -62,6 +62,12 @@ function Player:handleMovementAndCollisions()
 			self.touchingGround = true
 		end
 	end
+
+	if self.xVelocity < 0 then
+		self.globalFlip = 1
+	elseif self.xVelocity > 0 then
+		self.globalFlip = 0
+	end
 end
 
 -- Input Helper Functions
@@ -84,8 +90,10 @@ end
 function Player:changeToWalkState(direction)
 	if direction == "left" then
 		self.xVelocity = -self.maxSpeed
+		self.globalFlip = 1
 	elseif direction == "right" then
 		self.xVelocity = self.maxSpeed
+		self.globalFlip = 0
 	end
 
 	self:changeState("walk")
