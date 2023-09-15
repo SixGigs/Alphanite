@@ -66,4 +66,11 @@ end
 
 -- Input Helper Functions
 function Player:handleGroundInput()
+	if pd.buttonIsPressed(pd.kButtonLeft) then
+		self:changeToWalkState("left")
+	elseif pd.buttonIsPressed(pd.kButtonRight) then
+		self:changeToWalkState("right")
+	else
+		self:changeToIdleState()
+	end
 end
