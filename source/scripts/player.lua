@@ -1,7 +1,7 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
-class('Player').extends()
+class('Player').extends(AnimatedSprite)
 
 function Player:init(x, y)
 	-- State Machine
@@ -9,12 +9,12 @@ function Player:init(x, y)
 	Player.super.init(self, playerImageTable)
 
 	self:addState("idle", 1, 1)
-	self:addState("walk", 1, 4, {tickStep = 4})
+	self:addState("walk", 1, 4, {tickStep = 6})
 	self:addState("jump", 5, 5)
 	self:playAnimation()
 
 	-- Sprite Properties
-	self:move(x, y)
+	self:moveTo(x, y)
 	self:setZIndex(Z_INDEXES.Player)
 	self:setTag(TAGS.Player)
 	self:setCollideRect(8, 2, 16, 30)
