@@ -20,6 +20,9 @@ class('GameScene').extends()
 -- Initialise the game scene class
 function GameScene:init()
 	self:goToLevel("Level_0")
+	self.spawnX = 24 * 8
+	self.spawnY = 10 * 8
+	self.player = Player(self.spawnX, self.spawnY)
 end
 
 -- Go to the level specified
