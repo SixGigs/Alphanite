@@ -90,3 +90,11 @@ function Player:changeToWalkState(direction)
 
 	self:changeState("walk")
 end
+
+-- Physics helper function
+function Player:applyGravity()
+	self.yVelocity = self.yVelocity + self.gravity
+	if self.touchingGround then
+		self.yVelocity = 0
+	end
+end
