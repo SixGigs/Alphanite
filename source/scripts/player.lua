@@ -74,3 +74,19 @@ function Player:handleGroundInput()
 		self:changeToIdleState()
 	end
 end
+
+-- State transitions
+function Player:changeToIdleState()
+	self.xVelocity = 0
+	self:changeState("idle")
+end
+
+function Player:changeToWalkState(direction)
+	if direction == "left" then
+		self.xVelocity = -self.maxSpeed
+	elseif direction == "right" then
+		self.xVelocity = self.maxSpeed
+	end
+
+	self:changeState("walk")
+end
