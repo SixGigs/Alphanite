@@ -39,3 +39,15 @@ function Player:update()
 	self:handleState()
 	self:handleMovementAndCollisions()
 end
+
+function Player:handleState()
+	if self.currentState == "idle" then
+		self:applyGravity()
+		self:handleGroundInput()
+	elseif self.currentState == "walk" then
+		self:applyGravity()
+		self:handleGroundInput()
+	elseif self.currentState == "jump" then
+
+	end
+end
