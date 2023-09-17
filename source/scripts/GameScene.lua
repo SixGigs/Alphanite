@@ -12,7 +12,7 @@ Z_INDEXES = {
 }
 
 -- Load the level
-ldtk.load("levels/level_one.ldtk", false)
+ldtk.load("levels/world.ldtk", false)
 
 -- Create the game scene class
 class('GameScene').extends()
@@ -38,6 +38,7 @@ function GameScene:goToLevel(level_name)
 			layerSprite:setCenter(0, 0)
 			layerSprite:moveTo(0, 0)
 			layerSprite:setZIndex(layer.zIndex)
+			gfx.setDrawOffset(-24, -24)
 			layerSprite:add()
 
 			local emptyTiles = ldtk.get_empty_tileIDs(level_name, "Solid", layer_name)
